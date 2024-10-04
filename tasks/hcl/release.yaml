@@ -19,9 +19,7 @@ spec:
               name: jx-boot-job-env-vars
               optional: true
           name: ""
-          resources:
-            cpu: 400m
-            memory: 600Mi
+          resources: {}
           workingDir: /workspace/source
         steps:
         - env:
@@ -43,7 +41,9 @@ spec:
             jx-release-version --tag > VERSION
         - image: ghcr.io/jenkins-x/jx-boot:3.10.155
           name: jx-variables
-          resources: {}
+          resources:
+            cpu: 400m
+            memory: 512Mi
           script: |
             #!/usr/bin/env sh
             jx gitops variables
